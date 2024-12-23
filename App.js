@@ -1,18 +1,60 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, TextInput, View, Text, Pressable } from "react-native";
+import {
+  StyleSheet,
+  TextInput,
+  View,
+  Text,
+  Pressable,
+  FlatList,
+  Modal,
+} from "react-native";
 import { useState } from "react";
+import uuid from "react-native-uuid";
 
 const App = () => {
-  const [newItem, setNewItem] = useState("");
-  const [items, setItems] = useState(["Coca cola", "Pepsi"]);
-
-  // const addItem = () => {
-  //   setItems((prevItems) => prevItems.map((item) => item + 1));
-  // };
+  const [newItemValue, setNewItemValue] = useState("");
+  const [items, setItems] = useState([]);
+  const [itemSelected, setItemSelected] = useState({});
+  const [modalVisible, setModalVisible] = useState(false);
+  const [editModalVisible, setEditModalVisible] = useState(false);
+  const [editItemValue, setEditItemValue] = useState("");
 
   const addItem = () => {
-    setItems([...items, newItem]);
-    setNewItem("");
+    const item = {
+      id: uuid.v4(),
+      value: newItemValue,
+    };
+    setItems((currentItems) => [...currentItems, item]);
+    setNewItemValue("");
+  };
+
+  const onHandlerModal = (item) => {
+    setItemSelected(item);
+    setModalVisible(!modalVisible);
+  };
+
+  const onHandlerDelete = (item) => {
+    setItems((currentItems) =>
+      currentItems.filter((currentItem) => currentItem.id !== item.id)
+    );
+    setItemSelected({});
+    setModalVisible(!modalVisible);
+  };
+
+  const onHandlerEditModal = (item) => {
+    setItemSelected(item);
+    setEditItemValue(item.value);
+    setEditModalVisible(!editModalVisible);
+  };
+
+  const onHandlerSaveEdit = () => {
+    setItems((currentItems) =>
+      currentItems.map((item) =>
+        item.id === itemSelected.id ? { ...item, value: editItemValue } : item
+      )
+    );
+    setEditModalVisible(!editModalVisible);
+    setItemSelected({});
   };
 
   return (
@@ -21,32 +63,97 @@ const App = () => {
         <TextInput
           placeholder="Add Item"
           placeholderTextColor={"white"}
-          onChangeText={(text) => setNewItem(text)}
-          value={newItem}
+          onChangeText={(text) => setNewItemValue(text)}
+          value={newItemValue}
           style={styles.input}
         ></TextInput>
         <Pressable
           style={({ pressed }) => [
             styles.button,
             pressed && styles.buttonPressed,
-            newItem.trim() === "" && styles.buttonDisabled, // Apply disabled style
+            newItemValue.trim() === "" && styles.buttonDisabled,
           ]}
           onPress={addItem}
-          disabled={newItem === ""}
+          disabled={newItemValue === ""}
         >
           <Text style={styles.textButton}>+</Text>
         </Pressable>
       </View>
 
-      <View style={styles.containerCards}>
-        {items.map((item, index) => (
+      <FlatList
+        data={items}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
           <View style={styles.card}>
-            <Text key={index} style={styles.cardText}>
-              {item}
-            </Text>
+            <Text style={styles.cardText}>{item.value}</Text>
+            <Pressable
+              style={styles.button}
+              onPress={() => onHandlerEditModal(item)}
+            >
+              <Text style={styles.textButton}>✎</Text>
+            </Pressable>
+            <Pressable
+              style={styles.button}
+              onPress={() => onHandlerModal(item)}
+            >
+              <Text style={styles.textButton}>-</Text>
+            </Pressable>
           </View>
-        ))}
-      </View>
+        )}
+      />
+
+      {/* Edit Item Modal */}
+      <Modal animationType="fade" visible={editModalVisible} transparent>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>Current Value:</Text>
+            <Text style={styles.modalText}>{itemSelected.value}</Text>
+
+            <Text style={styles.modalText}>New Value:</Text>
+            <TextInput
+              style={styles.modalInput}
+              onChangeText={setEditItemValue}
+            />
+
+            <View style={styles.modalButtons}>
+              <Pressable style={styles.modalButton} onPress={onHandlerSaveEdit}>
+                <Text style={styles.modalButtonText}>Save</Text>
+              </Pressable>
+              <Pressable
+                style={styles.modalButton}
+                onPress={() => setEditModalVisible(false)}
+              >
+                <Text style={styles.modalButtonText}>Cancel</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Delete Confirmation Modal */}
+      <Modal animationType="fade" visible={modalVisible} transparent>
+        <View style={styles.modalContainer}>
+          <View style={styles.modalView}>
+            <Text style={styles.modalText}>
+              Are you sure you want to delete {itemSelected.value}?
+            </Text>
+            <View style={styles.modalButtons}>
+              <Pressable
+                style={styles.modalButton}
+                onPress={() => onHandlerDelete(itemSelected)}
+              >
+                <Text style={styles.modalButtonText}>Yes</Text>
+              </Pressable>
+              <Pressable
+                style={styles.modalButton}
+                onPress={() => onHandlerModal({})}
+              >
+                <Text style={styles.modalButtonText}>No</Text>
+              </Pressable>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
@@ -90,18 +197,67 @@ const styles = StyleSheet.create({
   textButton: {
     color: "red",
   },
-  containerCards: {
-    alignItems: "center",
-  },
   card: {
     width: "80%",
     backgroundColor: "#F4012D",
+    marginHorizontal: "10%",
+    marginVertical: 20,
+    padding: 15,
+    borderRadius: 6,
+    alignItems: "center",
+    flexDirection: "row",
+  },
+  cardText: {
+    color: "white",
+    flex: 1,
+    textAlign: "center",
+  },
+  modalContainer: {
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    flex: 1,
+  },
+  modalView: {
+    width: "80%",
+    marginHorizontal: "10%",
+    marginVertical: 10,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  modalText: {
+    marginBottom: 15,
+    fontSize: 18,
+    textAlign: "center",
+  },
+  modalButtons: {
+    flexDirection: "row",
+    gap: 20,
+  },
+  modalButton: {
+    backgroundColor: "#F4012D",
+    padding: 10,
+    borderRadius: 6,
+  },
+  modalButtonText: {
+    color: "white",
+    textAlign: "center",
+  },
+  modalInput: {
+    backgroundColor: "#F4012D",
+    borderBottomColor: "white",
+    borderBottomWidth: 2,
     margin: 10,
     padding: 10,
     borderRadius: 10,
-    alignItems: "center",
-  },
-  cardText: {
     color: "white",
   },
 });
