@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
+import Header from "../components/Header";
 
-const ProductDetail = () => {
+const ProductDetail = ({ product }) => {
   return (
     <View>
       <Header title={"ProductDetail"} />
-      <Text>ProductDetail</Text>
+      <Text>{product.title}</Text>
     </View>
   );
 };

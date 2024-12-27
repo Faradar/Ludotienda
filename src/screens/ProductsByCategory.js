@@ -1,8 +1,9 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View, FlatList } from "react-native";
 import products from "../data/products";
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
-import { FlatList } from "react-native-web";
+import Search from "../components/Search";
+import CardProduct from "../components/CardProduct";
 
 const ProductsByCategory = ({ category }) => {
   const [productsFiltered, setProductsFiltered] = useState([]);
@@ -11,25 +12,26 @@ const ProductsByCategory = ({ category }) => {
     setProductsFiltered(
       products.filter((product) => product.category === category)
     );
-  }, []);
+  }, [products, category]);
+
+  const filterByKeyword = (keyword) => {
+    setProductsFiltered(
+      products.filter(
+        (product) =>
+          product.category === category &&
+          product.title.toLowerCase().includes(keyword.toLowerCase())
+      )
+    );
+  };
 
   return (
     <View>
       <Header title={category} />
+      <Search filterByKeyword={filterByKeyword} />
       <FlatList
         data={productsFiltered}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.title}</Text>
-            <Text>{item.description}</Text>
-            <Text>{item.price}</Text>
-            <Text>{item.stock}</Text>
-            <Pressable>
-              <Text>Carrito</Text>
-            </Pressable>
-          </View>
-        )}
+        renderItem={({ item }) => <CardProduct item={item} />}
       />
     </View>
   );

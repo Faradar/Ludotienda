@@ -9,12 +9,12 @@
     "stock": 133,
     "brand": "YIOSI",
     "category": "lighting",
-    "thumbnail": "https://i.dummyjson.com/data/products/100/thumbnail.jpg",
+    "thumbnail": "https://picsum.photos/200/300",
     "images": [
-      "https://i.dummyjson.com/data/products/100/1.jpg",
-      "https://i.dummyjson.com/data/products/100/2.jpg",
-      "https://i.dummyjson.com/data/products/100/3.jpg",
-      "https://i.dummyjson.com/data/products/100/thumbnail.jpg"
+      "https://picsum.photos/200/300",
+      "https://picsum.photos/200/300",
+      "https://picsum.photos/200/300",
+      "https://picsum.photos/200/300"
     ]
   },
   {
