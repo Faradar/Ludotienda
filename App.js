@@ -1,6 +1,6 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View, StatusBar } from "react-native";
 import { useFonts } from "expo-font";
+import fonts from "./src/global/fonts";
 
 // screens
 import Home from "./src/screens/Home";
@@ -8,11 +8,7 @@ import ProductsByCategory from "./src/screens/ProductsByCategory";
 import ProductDetail from "./src/screens/ProductDetail";
 
 export default function App() {
-  const [fontsLoaded] = useFonts({
-    josefin: require("./assets/fonts/JosefinSans-Bold.ttf"),
-    lobster: require("./assets/fonts/Lobster-Regular.ttf"),
-    playfair: require("./assets/fonts/Playfair_144pt-Regular.ttf"),
-  });
+  const [fontsLoaded] = useFonts(fonts);
 
   if (!fontsLoaded) {
     return null;
@@ -38,9 +34,10 @@ export default function App() {
   };
 
   return (
-    <View style={{ flex: 1 }}>
-      <ProductsByCategory category={"lighting"} />
+    <View style={styless.container}>
       <StatusBar style="light" backgroundColor="red" />
+      <ProductsByCategory category="smartphones" />
+      {/* <ProductDetail product={product} /> */}
     </View>
   );
 }
@@ -48,8 +45,5 @@ export default function App() {
 const styless = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
