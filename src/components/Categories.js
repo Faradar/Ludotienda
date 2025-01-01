@@ -8,10 +8,15 @@ const Categories = () => {
       data={categories}
       keyExtractor={(item) => item}
       renderItem={({ item }) => <CardItemCategory item={item} />}
+      contentContainerStyle={styles.containerCard}
     />
   );
 };
 
 export default Categories;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  containerCard: {
+    paddingBottom: 60,
+  },
+});

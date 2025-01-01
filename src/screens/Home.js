@@ -1,11 +1,9 @@
 import { StyleSheet, View } from "react-native";
-import Header from "../components/Header";
 import Categories from "../components/Categories";
 
 const Home = () => {
   return (
-    <View>
-      <Header title="Home" />
+    <View style={styles.container}>
       <Categories />
     </View>
   );
@@ -13,4 +11,9 @@ const Home = () => {
 
 export default Home;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    overflow: "auto",
+  },
+});

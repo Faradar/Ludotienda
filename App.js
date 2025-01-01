@@ -1,11 +1,8 @@
 import { StyleSheet, View, StatusBar } from "react-native";
 import { useFonts } from "expo-font";
 import fonts from "./src/global/fonts";
-
-// screens
-import Home from "./src/screens/Home";
-import ProductsByCategory from "./src/screens/ProductsByCategory";
-import ProductDetail from "./src/screens/ProductDetail";
+import Navigator from "./src/components/Navigator";
+import colors from "./src/global/colors";
 
 export default function App() {
   const [fontsLoaded] = useFonts(fonts);
@@ -35,9 +32,8 @@ export default function App() {
 
   return (
     <View style={styless.container}>
-      <StatusBar style="light" backgroundColor="red" />
-      <ProductsByCategory category="smartphones" />
-      {/* <ProductDetail product={product} /> */}
+      <StatusBar style="light" backgroundColor={colors.accent} />
+      <Navigator />
     </View>
   );
 }

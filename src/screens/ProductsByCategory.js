@@ -1,12 +1,17 @@
 import { StyleSheet, View, FlatList, useWindowDimensions } from "react-native";
-import products from "../data/products";
 import { useEffect, useState } from "react";
-import Header from "../components/Header";
+import products from "../data/products";
 import Search from "../components/Search";
 import CardProduct from "../components/CardProduct";
 import NoResults from "../components/NoResults";
 
-const ProductsByCategory = ({ category }) => {
+const ProductsByCategory = ({
+  route: {
+    params: { category },
+  },
+}) => {
+  // const {category} = route.params; // this is another way to get the category
+
   const [portrait, setPortrait] = useState(true);
   const { width, height } = useWindowDimensions();
 
@@ -38,7 +43,6 @@ const ProductsByCategory = ({ category }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Header title={category} />
       <Search filterByKeyword={filterByKeyword} />
       {productsFiltered.length === 0 ? (
         <NoResults message="No products match your search." />

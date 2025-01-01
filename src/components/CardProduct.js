@@ -1,9 +1,15 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import colors from "../global/colors";
+import { useNavigation } from "@react-navigation/native";
 
 const CardProduct = ({ item }) => {
+  const navigation = useNavigation();
+
   return (
-    <Pressable style={styles.container}>
+    <Pressable
+      style={styles.container}
+      onPress={() => navigation.navigate("ProductDetail", { product: item })}
+    >
       <Image
         source={{ uri: item.thumbnail }}
         style={styles.image}
