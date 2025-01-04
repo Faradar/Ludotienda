@@ -1,7 +1,7 @@
 import { StyleSheet, View, StatusBar } from "react-native";
 import { useFonts } from "expo-font";
 import fonts from "./src/global/fonts";
-import Navigator from "./src/components/Navigator";
+import Navigator from "./src/navigation/Navigator";
 import colors from "./src/global/colors";
 
 export default function App() {
