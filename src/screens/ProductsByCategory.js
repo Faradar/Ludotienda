@@ -1,17 +1,11 @@
 import { StyleSheet, View, FlatList, useWindowDimensions } from "react-native";
 import { useEffect, useState } from "react";
-import products from "../data/products";
+import { useSelector } from "react-redux";
 import Search from "../components/Search";
 import CardProduct from "../components/CardProduct";
 import NoResults from "../components/NoResults";
 
-const ProductsByCategory = ({
-  route: {
-    params: { category },
-  },
-}) => {
-  // const {category} = route.params; // this is another way to get the category
-
+const ProductsByCategory = () => {
   const [portrait, setPortrait] = useState(true);
   const { width, height } = useWindowDimensions();
 
@@ -23,32 +17,16 @@ const ProductsByCategory = ({
     }
   }, [width, height]);
 
-  const [productsFiltered, setProductsFiltered] = useState([]);
-
-  useEffect(() => {
-    setProductsFiltered(
-      products.filter((product) => product.category === category)
-    );
-  }, [products, category]);
-
-  const filterByKeyword = (keyword) => {
-    setProductsFiltered(
-      products.filter(
-        (product) =>
-          product.category === category &&
-          product.title.toLowerCase().includes(keyword.toLowerCase())
-      )
-    );
-  };
+  const { productsFilteredByCategory } = useSelector((state) => state.shop);
 
   return (
     <View style={{ flex: 1 }}>
-      <Search filterByKeyword={filterByKeyword} />
-      {productsFiltered.length === 0 ? (
+      <Search />
+      {productsFilteredByCategory.length === 0 ? (
         <NoResults message="No products match your search." />
       ) : (
         <FlatList
-          data={productsFiltered}
+          data={productsFilteredByCategory}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <CardProduct item={item} />}
           contentContainerStyle={portrait ? null : styles.containerLandscape}

@@ -1,19 +1,35 @@
 import { Pressable, StyleSheet, View, TextInput } from "react-native";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setProductsFilteredByCategory } from "../features/shopSlice";
 import colors from "../global/colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
-const Search = ({ filterByKeyword }) => {
-  const [textInput, setTextInput] = useState("");
+const Search = () => {
+  const dispatch = useDispatch();
+  const { products, productsFilteredByCategory } = useSelector(
+    (state) => state.shop
+  );
 
-  const search = () => {
-    filterByKeyword(textInput);
+  const filterByKeyword = (keyword) => {
+    const filtered = products.filter(
+      (product) =>
+        product.category === productsFilteredByCategory[0]?.category && // Assumes same category
+        product.title.toLowerCase().includes(keyword.toLowerCase())
+    );
+    dispatch(setProductsFilteredByCategory({ products: filtered }));
   };
+
+  const [textInput, setTextInput] = useState("");
 
   const cancel = () => {
     setTextInput("");
-    filterByKeyword("");
+    dispatch(
+      setProductsFilteredByCategory({
+        category: productsFilteredByCategory[0]?.category,
+      })
+    );
   };
 
   return (
@@ -21,11 +37,14 @@ const Search = ({ filterByKeyword }) => {
       <TextInput
         style={styles.input}
         value={textInput}
-        onChangeText={(text) => setTextInput(text)}
+        onChangeText={setTextInput}
         placeholder="Search"
         placeholderTextColor={colors.lightGray}
       />
-      <Pressable style={styles.button} onPress={search}>
+      <Pressable
+        style={styles.button}
+        onPress={() => filterByKeyword(textInput)}
+      >
         <FontAwesome name="search" size={30} color="black" />
       </Pressable>
       <Pressable style={styles.button} onPress={cancel}>

@@ -2,10 +2,12 @@ import { StyleSheet, View, FlatList, Pressable, Text } from "react-native";
 import cart from "../data/cart";
 import CardCartProduct from "../components/CardCartProduct";
 import colors from "../global/colors";
+import Counter from "../components/Counter";
 
 const Cart = () => {
   return (
     <View style={styles.container}>
+      <Counter />
       <FlatList
         data={cart.products}
         keyExtractor={(item) => item.id.toString()}
