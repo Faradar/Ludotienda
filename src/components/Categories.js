@@ -1,9 +1,41 @@
-import { StyleSheet, FlatList } from "react-native";
+import { StyleSheet, FlatList, Text, View } from "react-native";
 import CardItemCategory from "./CardItemCategory";
-import { useSelector } from "react-redux";
+import { useGetCategoriesQuery } from "../services/shop";
+// import { useEffect } from "react";
 
 const Categories = () => {
-  const categories = useSelector((state) => state.shop.categories);
+  const {
+    data: categories,
+    isError,
+    error,
+    isSuccess,
+    isLoading,
+  } = useGetCategoriesQuery();
+
+  // useEffect(() => {
+  //   if (isSuccess) {
+  //     console.log(categories);
+  //   }
+  //   if (isError) {
+  //     console.log(error);
+  //   }
+  // }, [isError, error, isSuccess, categories]);
+
+  if (isLoading) {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
+
+  if (isError) {
+    return (
+      <View>
+        <Text>Error: {error.message}</Text>
+      </View>
+    );
+  }
 
   return (
     <FlatList

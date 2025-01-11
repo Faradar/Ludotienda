@@ -1,11 +1,35 @@
-import { StyleSheet, View, FlatList, useWindowDimensions } from "react-native";
+import {
+  StyleSheet,
+  View,
+  FlatList,
+  useWindowDimensions,
+  Text,
+} from "react-native";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import Search from "../components/Search";
 import CardProduct from "../components/CardProduct";
 import NoResults from "../components/NoResults";
+import { useGetProductsQuery } from "../services/shop";
 
-const ProductsByCategory = () => {
+const ProductsByCategory = ({ route }) => {
+  const { category } = route.params;
+  const {
+    data: productsData,
+    isError,
+    error,
+    isLoading,
+  } = useGetProductsQuery(category);
+  const productsFilteredByCategory = productsData
+    ? Object.values(productsData)
+    : [];
+  const [filteredProducts, setFilteredProducts] = useState(
+    productsFilteredByCategory
+  );
+
+  useEffect(() => {
+    setFilteredProducts(productsFilteredByCategory); // Reset filtered list on data fetch
+  }, [productsData]);
+
   const [portrait, setPortrait] = useState(true);
   const { width, height } = useWindowDimensions();
 
@@ -17,16 +41,33 @@ const ProductsByCategory = () => {
     }
   }, [width, height]);
 
-  const { productsFilteredByCategory } = useSelector((state) => state.shop);
+  if (isError) {
+    return (
+      <View>
+        <Text>Error: {error.message}</Text>
+      </View>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <View>
+        <Text>Loading...</Text>
+      </View>
+    );
+  }
 
   return (
     <View style={{ flex: 1 }}>
-      <Search />
-      {productsFilteredByCategory.length === 0 ? (
+      <Search
+        products={productsFilteredByCategory}
+        onFilter={setFilteredProducts}
+      />
+      {filteredProducts.length === 0 ? (
         <NoResults message="No products match your search." />
       ) : (
         <FlatList
-          data={productsFilteredByCategory}
+          data={filteredProducts}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <CardProduct item={item} />}
           contentContainerStyle={portrait ? null : styles.containerLandscape}

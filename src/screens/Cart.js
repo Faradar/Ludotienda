@@ -3,8 +3,20 @@ import cart from "../data/cart";
 import CardCartProduct from "../components/CardCartProduct";
 import colors from "../global/colors";
 import Counter from "../components/Counter";
+import { usePostOrdersMutation } from "../services/orders";
 
 const Cart = () => {
+  const [triggerPost] = usePostOrdersMutation();
+  const confirmCart = () => {
+    triggerPost({
+      id: "2",
+      products: [
+        { id: 1, quantity: 2 },
+        { id: 2, quantity: 1 },
+      ],
+      total: 120,
+    });
+  };
   return (
     <View style={styles.container}>
       <Counter />
@@ -15,7 +27,7 @@ const Cart = () => {
       />
       <View style={styles.containerTotal}>
         <Text style={styles.text}>Total: ${cart.total} ARG</Text>
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={confirmCart}>
           <Text style={styles.buttonText}>Checkout</Text>
         </Pressable>
       </View>

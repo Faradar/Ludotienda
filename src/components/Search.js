@@ -1,35 +1,28 @@
 import { Pressable, StyleSheet, View, TextInput } from "react-native";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setProductsFilteredByCategory } from "../features/shopSlice";
+// import { useDispatch, useSelector } from "react-redux";
+// import { setProductsFilteredByCategory } from "../features/shopSlice";
 import colors from "../global/colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
-const Search = () => {
-  const dispatch = useDispatch();
-  const { products, productsFilteredByCategory } = useSelector(
-    (state) => state.shop
-  );
+const Search = ({ products, onFilter }) => {
+  // const dispatch = useDispatch();
+  // const { products, productsFilteredByCategory } = useSelector(
+  //   (state) => state.shop
+  // );
+  const [textInput, setTextInput] = useState("");
 
   const filterByKeyword = (keyword) => {
-    const filtered = products.filter(
-      (product) =>
-        product.category === productsFilteredByCategory[0]?.category && // Assumes same category
-        product.title.toLowerCase().includes(keyword.toLowerCase())
+    const filtered = products.filter((product) =>
+      product.title.toLowerCase().includes(keyword.toLowerCase())
     );
-    dispatch(setProductsFilteredByCategory({ products: filtered }));
+    onFilter(filtered);
   };
-
-  const [textInput, setTextInput] = useState("");
 
   const cancel = () => {
     setTextInput("");
-    dispatch(
-      setProductsFilteredByCategory({
-        category: productsFilteredByCategory[0]?.category,
-      })
-    );
+    onFilter(products); // Reset to original products
   };
 
   return (
