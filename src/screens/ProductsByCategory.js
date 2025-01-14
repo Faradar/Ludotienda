@@ -13,22 +13,10 @@ import { useGetProductsQuery } from "../services/shop";
 
 const ProductsByCategory = ({ route }) => {
   const { category } = route.params;
-  const {
-    data: productsData,
-    isError,
-    error,
-    isLoading,
-  } = useGetProductsQuery(category);
-  const productsFilteredByCategory = productsData
-    ? Object.values(productsData)
-    : [];
-  const [filteredProducts, setFilteredProducts] = useState(
-    productsFilteredByCategory
-  );
-
-  useEffect(() => {
-    setFilteredProducts(productsFilteredByCategory); // Reset filtered list on data fetch
-  }, [productsData]);
+  const { data, isSuccess, isError, error, isLoading } =
+    useGetProductsQuery(category);
+  const [keyword, setKeyword] = useState("");
+  const [products, setProducts] = useState([]);
 
   const [portrait, setPortrait] = useState(true);
   const { width, height } = useWindowDimensions();
@@ -40,6 +28,20 @@ const ProductsByCategory = ({ route }) => {
       setPortrait(true);
     }
   }, [width, height]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setProducts(Object.values(data));
+    }
+  }, [isSuccess, data]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setProducts(
+        Object.values(data).filter((product) => product.title.includes(keyword))
+      );
+    }
+  }, [keyword, isSuccess]);
 
   if (isError) {
     return (
@@ -59,15 +61,12 @@ const ProductsByCategory = ({ route }) => {
 
   return (
     <View style={{ flex: 1 }}>
-      <Search
-        products={productsFilteredByCategory}
-        onFilter={setFilteredProducts}
-      />
-      {filteredProducts.length === 0 ? (
+      <Search onChangeKeyword={(t) => setKeyword(t)} />
+      {products.length === 0 ? (
         <NoResults message="No products match your search." />
       ) : (
         <FlatList
-          data={filteredProducts}
+          data={products}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <CardProduct item={item} />}
           contentContainerStyle={portrait ? null : styles.containerLandscape}

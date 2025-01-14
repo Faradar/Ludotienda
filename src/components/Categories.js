@@ -8,18 +8,8 @@ const Categories = () => {
     data: categories,
     isError,
     error,
-    isSuccess,
     isLoading,
   } = useGetCategoriesQuery();
-
-  // useEffect(() => {
-  //   if (isSuccess) {
-  //     console.log(categories);
-  //   }
-  //   if (isError) {
-  //     console.log(error);
-  //   }
-  // }, [isError, error, isSuccess, categories]);
 
   if (isLoading) {
     return (

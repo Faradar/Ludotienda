@@ -1,28 +1,19 @@
 import { Pressable, StyleSheet, View, TextInput } from "react-native";
 import { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-// import { setProductsFilteredByCategory } from "../features/shopSlice";
 import colors from "../global/colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
-const Search = ({ products, onFilter }) => {
-  // const dispatch = useDispatch();
-  // const { products, productsFilteredByCategory } = useSelector(
-  //   (state) => state.shop
-  // );
+const Search = ({ onChangeKeyword }) => {
   const [textInput, setTextInput] = useState("");
 
-  const filterByKeyword = (keyword) => {
-    const filtered = products.filter((product) =>
-      product.title.toLowerCase().includes(keyword.toLowerCase())
-    );
-    onFilter(filtered);
+  const search = () => {
+    onChangeKeyword(textInput);
   };
 
   const cancel = () => {
+    onChangeKeyword("");
     setTextInput("");
-    onFilter(products); // Reset to original products
   };
 
   return (
@@ -30,7 +21,7 @@ const Search = ({ products, onFilter }) => {
       <TextInput
         style={styles.input}
         value={textInput}
-        onChangeText={setTextInput}
+        onChangeText={(text) => setTextInput(text)}
         placeholder="Search"
         placeholderTextColor={colors.lightGray}
       />

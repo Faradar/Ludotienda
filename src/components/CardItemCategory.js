@@ -2,22 +2,18 @@ import { StyleSheet, Text, Pressable } from "react-native";
 import ShadowCard from "./wrappers/ShadowCard";
 import { useNavigation } from "@react-navigation/native";
 import colors from "../global/colors";
-import { useDispatch } from "react-redux";
-import { setProductsFilteredByCategory } from "../features/shopSlice";
 
-const CardItemCategory = ({ item }) => {
+const CardItemCategory = ({ item: category }) => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
 
   return (
     <Pressable
       onPress={() => {
-        dispatch(setProductsFilteredByCategory({ category: item }));
-        navigation.navigate("ProductsByCategory", { category: item });
+        navigation.navigate("ProductsByCategory", { category });
       }}
     >
       <ShadowCard style={styles.container}>
-        <Text style={styles.text}>{item}</Text>
+        <Text style={styles.text}>{category}</Text>
       </ShadowCard>
     </Pressable>
   );
