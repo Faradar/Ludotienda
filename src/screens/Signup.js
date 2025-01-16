@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useSignUpMutation } from "../services/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/userSlice";
-import { signupSchema } from "../validations/signupSchema";
+import signupSchema from "../validations/signupSchema";
 
 const Signup = () => {
   const [email, setEmail] = useState("");
@@ -16,8 +16,8 @@ const Signup = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
-  const [triggerSignUp] = useSignUpMutation();
   const navigation = useNavigation();
+  const [triggerSignup] = useSignUpMutation();
   const dispatch = useDispatch();
 
   const onSubmit = async () => {
@@ -105,14 +105,16 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 22,
     fontFamily: "Lobster",
+    color: colors.lightGray,
   },
   sub: {
     fontSize: 14,
     fontFamily: "Josefin",
+    color: colors.lightGray,
   },
   subLink: {
     fontSize: 14,
     fontFamily: "Josefin",
-    color: "blue",
+    color: colors.lightGray,
   },
 });

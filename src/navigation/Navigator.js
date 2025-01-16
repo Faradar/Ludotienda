@@ -1,4 +1,3 @@
-import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import TabNavigator from "./TabNavigator";
 import AuthStack from "./AuthStack";
@@ -15,5 +14,3 @@ const Navigator = () => {
 };
 
 export default Navigator;
-
-const styles = StyleSheet.create();

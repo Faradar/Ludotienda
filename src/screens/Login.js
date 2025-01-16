@@ -14,10 +14,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const navigation = useNavigation();
   const [triggerLogin] = useLoginMutation();
   const dispatch = useDispatch();
-
-  const navigation = useNavigation();
 
   const onSubmit = async () => {
     try {

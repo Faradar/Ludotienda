@@ -8,7 +8,7 @@ const loginSchema = object({
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/,
       "The password should have at least one uppercase letter, one lowercase letter and one number"
     ),
-  email: string().email("The email is not valid").required("Email required"),
+  email: string().email("The email is not valid").required("Email is required"),
 });
 
 export default loginSchema;
