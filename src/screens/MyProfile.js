@@ -33,7 +33,13 @@ const MyProfile = () => {
         title="Add profile image"
         onPress={() => navigation.navigate("ImageSelector")}
       />
-      <SubmitButton title="Add location" onPress={() => {}} />
+      <SubmitButton
+        title="Add location"
+        onPress={() => navigation.navigate("LocationSelector")}
+      />
+      <View>
+        <Text>{user.address}</Text>
+      </View>
     </View>
   );
 };

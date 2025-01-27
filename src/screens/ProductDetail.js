@@ -1,18 +1,34 @@
 import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import colors from "../global/colors";
+import { usePostCartMutation } from "../services/cart";
+import { useSelector } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
 const ProductDetail = ({
   route: {
     params: { product },
   },
 }) => {
+  const navigation = useNavigation();
+  const localId = useSelector((state) => state.user.localId);
+  const [triggerAddProduct] = usePostCartMutation();
+
+  const handleAddProduct = async () => {
+    const cartProduct = {
+      ...product,
+      quantity: 1,
+    };
+    const result = await triggerAddProduct({ localId, cartProduct });
+    navigation.navigate("Cart");
+  };
+
   return (
     <View style={styles.container}>
       <Image source={{ uri: product.thumbnail }} style={styles.image} />
       <Text style={styles.title}>{product.title}</Text>
       <Text style={styles.description}>{product.description}</Text>
       <Text style={styles.price}>Price: {product.price} $ ARG</Text>
-      <Pressable style={styles.button}>
+      <Pressable style={styles.button} onPress={handleAddProduct}>
         <Text style={styles.buttonText}>Add to cart</Text>
       </Pressable>
     </View>
