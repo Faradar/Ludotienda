@@ -38,7 +38,7 @@ const MyProfile = () => {
         onPress={() => navigation.navigate("LocationSelector")}
       />
       <View>
-        <Text>{user.address}</Text>
+        <Text>{user?.address}</Text>
       </View>
     </View>
   );

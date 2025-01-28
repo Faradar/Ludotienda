@@ -8,6 +8,7 @@ import { useLoginMutation } from "../services/auth";
 import { useDispatch } from "react-redux";
 import { setUser } from "../features/userSlice";
 import loginSchema from "../validations/loginSchema";
+import { deleteSession, insertSession } from "../config/dbSqlite";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -28,6 +29,8 @@ const Login = () => {
         localId: response.data.localId,
       };
       dispatch(setUser(user));
+      await deleteSession();
+      await insertSession(user.localId, user.email, user.idToken);
     } catch (error) {
       switch (error.path) {
         case "email":
