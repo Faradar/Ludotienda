@@ -18,6 +18,10 @@ export const cartApi = createApi({
       },
       providesTags: ["addProduct", "deleteProduct"],
     }),
+    getProductCart: builder.query({
+      query: ({ localId, productId }) => `carts/${localId}/${productId}.json`,
+      providesTags: ["addProduct", "deleteProduct"],
+    }),
     postCart: builder.mutation({
       query: ({ localId, cartProduct }) => ({
         url: `carts/${localId}/${cartProduct.id}.json`,
@@ -48,4 +52,5 @@ export const {
   usePostCartMutation,
   useDeleteCartProductMutation,
   useDeleteCartMutation,
+  useGetProductCartQuery,
 } = cartApi;

@@ -1,8 +1,6 @@
 import { StyleSheet, View, FlatList, Pressable, Text } from "react-native";
-// import cart from "../data/cart";
 import CardCartProduct from "../components/CardCartProduct";
 import colors from "../global/colors";
-// import Counter from "../components/Counter";
 import { usePostOrdersMutation } from "../services/orders";
 import { useSelector } from "react-redux";
 import { useDeleteCartMutation, useGetCartQuery } from "../services/cart";
@@ -33,7 +31,7 @@ const Cart = () => {
     };
     triggerPost({ order, localId });
     triggerDeleteCart({ localId });
-    navigation.navigate("OrdersStack");
+    navigation.navigate("Orders");
   };
 
   if (isLoading) return <LoadingSpinner />;
@@ -41,7 +39,6 @@ const Cart = () => {
 
   return (
     <View style={styles.container}>
-      {/* <Counter /> */}
       <FlatList
         data={cart}
         keyExtractor={(item) => item.id.toString()}

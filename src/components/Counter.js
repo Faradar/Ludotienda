@@ -1,65 +1,16 @@
-import { StyleSheet, Text, View, Pressable, Button } from "react-native";
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  decrement,
-  increment,
-  incrementByAmount,
-} from "../features/counterSlice";
-import { TextInput } from "react-native-web";
+import { StyleSheet, Text, View, Button, Pressable } from "react-native";
+import colors from "../global/colors";
 
-const Counter = () => {
-  // This code below is for redux counter
-  const [input, setInput] = useState(0);
-  const count = useSelector((state) => state.counter.value);
-  const dispatch = useDispatch();
-
-  // This code below is for non redux counter
-  // const [incrementByAmount, setIncrementByAmount] = useState(0);
-  // const [counter, setCounter] = useState(0);
-
+const Counter = ({ quantity, increment, decrement }) => {
   return (
-    <View>
-      {/* This code below is for redux counter */}
-      <Text>{count}</Text>
-      <View>
-        <Pressable onPress={() => dispatch(increment())} style={styles.button}>
-          <Text>Increment</Text>
-        </Pressable>
-        <Pressable onPress={() => dispatch(decrement())} style={styles.button}>
-          <Text>Decrement</Text>
-        </Pressable>
-        <TextInput value={input} onChangeText={(t) => setInput(parseInt(t))} />
-        <Button
-          title="Change"
-          onPress={() => dispatch(incrementByAmount(input))}
-        />
-      </View>
-
-      {/* This code below is for non redux counter */}
-      {/* <Text>{counter}</Text>
-      <View>
-        <Pressable
-          onPress={() => setCounter(counter + 1)}
-          style={styles.button}
-        >
-          <Text>Increment</Text>
-        </Pressable>
-        <Pressable
-          onPress={() => setCounter(counter - 1)}
-          style={styles.button}
-        >
-          <Text>Decrement</Text>
-        </Pressable>
-        <TextInput
-          value={incrementByAmount}
-          onChangeText={(t) => setIncrementByAmount(parseInt(t))}
-        />
-        <Button
-          title="Change"
-          onPress={() => setCounter(counter + incrementByAmount)}
-        />
-      </View> */}
+    <View style={styles.container}>
+      <Pressable style={styles.button} onPress={decrement}>
+        <Text style={styles.textButton}>-</Text>
+      </Pressable>
+      <Text style={styles.text}>{quantity}</Text>
+      <Pressable style={styles.button} onPress={increment}>
+        <Text style={styles.textButton}>+</Text>
+      </Pressable>
     </View>
   );
 };
@@ -67,10 +18,23 @@ const Counter = () => {
 export default Counter;
 
 const styles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    margin: 10,
+    alignItems: "center",
+    gap: 20,
+  },
   button: {
-    backgroundColor: "red",
+    backgroundColor: colors.accent,
+    width: 50,
     padding: 10,
-    margin: 5,
     borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  textButton: {
+    color: colors.lightGray,
+    fontSize: 20,
   },
 });
