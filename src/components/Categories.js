@@ -1,6 +1,7 @@
 import { StyleSheet, FlatList, Text, View } from "react-native";
 import CardItemCategory from "./CardItemCategory";
 import { useGetCategoriesQuery } from "../services/shop";
+import LoadingSpinner from "./LoadingSpinner";
 // import { useEffect } from "react";
 
 const Categories = () => {
@@ -12,11 +13,7 @@ const Categories = () => {
   } = useGetCategoriesQuery();
 
   if (isLoading) {
-    return (
-      <View>
-        <Text>Loading...</Text>
-      </View>
-    );
+    return <LoadingSpinner />;
   }
 
   if (isError) {

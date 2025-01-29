@@ -4,7 +4,8 @@ import AuthStack from "./AuthStack";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchSession } from "../config/dbSqlite";
-import { setUser } from "../features/userSlice";
+import { deleteUser, setUser } from "../features/userSlice";
+import { init } from "../config/dbSqlite";
 
 const Navigator = () => {
   const idToken = useSelector((state) => state.user.idToken);
@@ -12,9 +13,15 @@ const Navigator = () => {
 
   useEffect(() => {
     (async () => {
-      const sessionUser = await fetchSession();
-      if (sessionUser) {
-        dispatch(setUser(sessionUser));
+      try {
+        await init(); // Initialize the SQLite database
+        dispatch(deleteUser());
+        const sessionUser = await fetchSession();
+        if (sessionUser) {
+          dispatch(setUser(sessionUser));
+        }
+      } catch (error) {
+        console.log(error);
       }
     })();
   }, []);

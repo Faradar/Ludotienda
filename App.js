@@ -5,11 +5,8 @@ import Navigator from "./src/navigation/Navigator";
 import colors from "./src/global/colors";
 import { Provider } from "react-redux";
 import store from "./src/store";
-import { init } from "./src/config/dbSqlite";
 
 export default function App() {
-  init(); // Initialize the SQLite database
-
   const [fontsLoaded] = useFonts(fonts);
 
   if (!fontsLoaded) {

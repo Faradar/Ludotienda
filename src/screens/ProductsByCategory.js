@@ -10,6 +10,7 @@ import Search from "../components/Search";
 import CardProduct from "../components/CardProduct";
 import NoResults from "../components/NoResults";
 import { useGetProductsQuery } from "../services/shop";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const ProductsByCategory = ({ route }) => {
   const { category } = route.params;
@@ -50,11 +51,7 @@ const ProductsByCategory = ({ route }) => {
   }
 
   if (isLoading) {
-    return (
-      <View>
-        <Text>Loading...</Text>
-      </View>
-    );
+    return <LoadingSpinner />;
   }
 
   return (

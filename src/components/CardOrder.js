@@ -6,9 +6,7 @@ const CardOrder = ({ order }) => {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.text}>
-          {new Date(order.createdAt).toLocaleString()}
-        </Text>
+        <Text style={styles.text}>{order.createdAt}</Text>
         <Text style={styles.text}>Total: ${order.total} ARG</Text>
       </View>
       <AntDesign name="search1" size={30} color={colors.lightGray} />

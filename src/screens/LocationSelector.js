@@ -7,6 +7,7 @@ import { google_api_key } from "../database";
 import { useSelector } from "react-redux";
 import { usePatchLocationMutation } from "../services/user";
 import { useNavigation } from "@react-navigation/native";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const LocationSelector = () => {
   const navigation = useNavigation();
@@ -54,12 +55,7 @@ const LocationSelector = () => {
     navigation.navigate("MyProfile");
   };
 
-  if (location.lat === "")
-    return (
-      <View>
-        <Text>Loading</Text>
-      </View>
-    );
+  if (location.lat === "") return <LoadingSpinner />;
 
   return (
     <View style={styles.container}>

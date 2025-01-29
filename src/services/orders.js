@@ -4,15 +4,29 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const ordersApi = createApi({
   reducerPath: "ordersApi",
   baseQuery: fetchBaseQuery({ baseUrl: base_url }),
+  tagTypes: ["newOrders"],
   endpoints: (builder) => ({
     postOrders: builder.mutation({
-      query: ({ ...order }) => ({
-        url: "/orders.json",
+      query: ({ order, localId }) => ({
+        url: `orders/${localId}.json`,
         method: "POST",
         body: order,
       }),
+      invalidatesTags: ["newOrders"],
+    }),
+    getOrders: builder.query({
+      query: ({ localId }) => `orders/${localId}.json`,
+      transformResponse: (response) => {
+        if (!response) return null;
+        const data = Object.entries(response).map((item) => ({
+          ...item[1],
+          id: item[0],
+        }));
+        return data;
+      },
+      providesTags: ["newOrders"],
     }),
   }),
 });
 
-export const { usePostOrdersMutation } = ordersApi;
+export const { usePostOrdersMutation, useGetOrdersQuery } = ordersApi;
