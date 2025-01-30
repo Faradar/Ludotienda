@@ -4,16 +4,19 @@ import colors from "../global/colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
-const Search = ({ onChangeKeyword }) => {
+const Search = ({ products, onFilter }) => {
   const [textInput, setTextInput] = useState("");
 
-  const search = () => {
-    onChangeKeyword(textInput);
+  const filterByKeyword = (keyword) => {
+    const filtered = products.filter((product) =>
+      product.title.toLowerCase().includes(keyword.toLowerCase())
+    );
+    onFilter(filtered);
   };
 
   const cancel = () => {
-    onChangeKeyword("");
     setTextInput("");
+    onFilter(products);
   };
 
   return (
@@ -21,7 +24,7 @@ const Search = ({ onChangeKeyword }) => {
       <TextInput
         style={styles.input}
         value={textInput}
-        onChangeText={(text) => setTextInput(text)}
+        onChangeText={setTextInput}
         placeholder="Search"
         placeholderTextColor={colors.lightGray}
       />

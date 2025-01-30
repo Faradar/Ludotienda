@@ -17,15 +17,11 @@ const CardProduct = ({ item }) => {
       />
       <View>
         <Text style={styles.title}>{item.title}</Text>
-        {/* <Text style={styles.description}>Descripcion: {item.description}</Text> */}
         <View style={styles.containerText}>
           <Text style={styles.text}>Precio: ${item.price}</Text>
           <Text style={styles.text}>Stock: {item.stock}</Text>
         </View>
       </View>
-      {/* <Pressable>
-        <Text>Carrito</Text>
-      </Pressable> */}
     </Pressable>
   );
 };

@@ -1,16 +1,11 @@
-import {
-  StyleSheet,
-  View,
-  FlatList,
-  useWindowDimensions,
-  Text,
-} from "react-native";
+import { StyleSheet, View, FlatList, useWindowDimensions } from "react-native";
 import { useEffect, useState } from "react";
 import Search from "../components/Search";
 import CardProduct from "../components/CardProduct";
 import NoResults from "../components/NoResults";
 import { useGetProductsQuery } from "../services/shop";
 import LoadingSpinner from "../components/LoadingSpinner";
+import EmptyListComponent from "../components/EmptyListComponent";
 
 const ProductsByCategory = ({ route }) => {
   const { category } = route.params;
@@ -43,11 +38,7 @@ const ProductsByCategory = ({ route }) => {
   }, [width, height]);
 
   if (isError) {
-    return (
-      <View>
-        <Text>Error: {error.message}</Text>
-      </View>
-    );
+    return <EmptyListComponent message={`Error: ${error.message}`} />;
   }
 
   if (isLoading) {
