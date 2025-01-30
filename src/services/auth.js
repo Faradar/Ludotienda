@@ -1,4 +1,4 @@
-import { auth_base_url, api_key } from "../database";
+import { auth_base_url, api_key } from "../config/database";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const authApi = createApi({

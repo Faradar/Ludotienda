@@ -3,7 +3,7 @@ import SubmitButton from "../components/SubmitButton";
 import MapPreview from "../components/MapPreview";
 import { useEffect, useState } from "react";
 import * as Location from "expo-location";
-import { google_api_key } from "../database";
+import { google_api_key } from "../config/database";
 import { useSelector } from "react-redux";
 import { usePatchLocationMutation } from "../services/user";
 import { useNavigation } from "@react-navigation/native";

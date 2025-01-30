@@ -1,6 +1,6 @@
 import { StyleSheet, View, Image } from "react-native";
 import React from "react";
-import { google_api_key } from "../database";
+import { google_api_key } from "../config/database";
 
 const MapPreview = ({ location }) => {
   const mapStaticUrl = `https://maps.googleapis.com/maps/api/staticmap?

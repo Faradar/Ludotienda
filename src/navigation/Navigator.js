@@ -14,7 +14,7 @@ const Navigator = () => {
   useEffect(() => {
     (async () => {
       try {
-        await init(); // Initialize the SQLite database
+        await init();
         dispatch(deleteUser());
         const sessionUser = await fetchSession();
         if (sessionUser) {
