@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Button, Pressable } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 import colors from "../global/colors";
 
 const Counter = ({ quantity, increment, decrement }) => {

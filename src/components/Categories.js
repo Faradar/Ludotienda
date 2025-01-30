@@ -2,7 +2,6 @@ import { StyleSheet, FlatList, Text, View } from "react-native";
 import CardItemCategory from "./CardItemCategory";
 import { useGetCategoriesQuery } from "../services/shop";
 import LoadingSpinner from "./LoadingSpinner";
-// import { useEffect } from "react";
 
 const Categories = () => {
   const {
