@@ -68,7 +68,7 @@ export default ProductDetail;
 
 const styles = StyleSheet.create({
   container: {
-    // gap: 20,
+    gap: 20,
   },
   image: {
     width: "100%",

@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, View } from "react-native";
 import CardOrder from "../components/CardOrder";
 import { useGetOrdersQuery } from "../services/orders";
 import { useSelector } from "react-redux";
@@ -24,5 +24,3 @@ const Orders = () => {
 };
 
 export default Orders;
-
-const styles = StyleSheet.create({});
