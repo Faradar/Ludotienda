@@ -26,7 +26,7 @@ const Search = ({ products, onFilter }) => {
         value={textInput}
         onChangeText={setTextInput}
         placeholder="Search"
-        placeholderTextColor={colors.lightGray}
+        placeholderTextColor={colors.darkGray}
       />
       <Pressable
         style={styles.button}
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     marginRight: 10,
     paddingHorizontal: 10,
-    color: colors.lightGray,
+    color: colors.darkGray,
   },
   button: {
     margin: 5,

@@ -4,6 +4,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { useGetUserQuery } from "../services/user";
 import LoadingSpinner from "../components/LoadingSpinner";
+import colors from "../global/colors";
 
 const MyProfile = () => {
   const navigation = useNavigation();
@@ -33,8 +34,8 @@ const MyProfile = () => {
         title="Add location"
         onPress={() => navigation.navigate("LocationSelector")}
       />
-      <View>
-        <Text>{user?.address}</Text>
+      <View style={styles.containerText}>
+        <Text style={styles.text}>{user?.address}</Text>
       </View>
     </View>
   );
@@ -57,5 +58,15 @@ const styles = StyleSheet.create({
   image: {
     width: 150,
     height: 150,
+  },
+  containerText: {
+    flexDirection: "row",
+    gap: 20,
+    padding: 10,
+  },
+  text: {
+    color: colors.darkGray,
+    fontSize: 14,
+    padding: 5,
   },
 });

@@ -15,7 +15,7 @@ export default function App() {
 
   return (
     <View style={{ flex: 1 }}>
-      <StatusBar style="light" backgroundColor={colors.accent} />
+      <StatusBar style="light" backgroundColor={colors.primary} />
       <Provider store={store}>
         <Navigator />
       </Provider>

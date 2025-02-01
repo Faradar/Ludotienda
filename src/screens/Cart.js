@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
-    color: colors.lightGray,
+    color: colors.darkGray,
   },
   button: {
     backgroundColor: colors.primary,

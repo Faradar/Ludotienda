@@ -11,7 +11,7 @@ const MyProfileStack = () => {
     <Stack.Navigator
       screenOptions={({ route }) => ({
         header: () => {
-          return <Header title="Perfil" />;
+          return <Header title="Profile" />;
         },
       })}
     >

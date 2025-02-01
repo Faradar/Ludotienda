@@ -26,7 +26,7 @@ const Categories = () => {
   return (
     <FlatList
       data={categories}
-      keyExtractor={(item) => item}
+      keyExtractor={(item) => item.name}
       renderItem={({ item }) => <CardItemCategory item={item} />}
       contentContainerStyle={styles.containerCard}
     />

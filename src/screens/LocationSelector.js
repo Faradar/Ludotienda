@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { usePatchLocationMutation } from "../services/user";
 import { useNavigation } from "@react-navigation/native";
 import LoadingSpinner from "../components/LoadingSpinner";
+import colors from "../global/colors";
 
 const LocationSelector = () => {
   const navigation = useNavigation();
@@ -59,7 +60,7 @@ const LocationSelector = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Direccion: {address}</Text>
+      <Text style={styles.text}>Direccion: {address}</Text>
       <MapPreview location={location} />
       <SubmitButton
         title="Confirmar Ubicacion"
@@ -76,5 +77,10 @@ const styles = StyleSheet.create({
     marginTop: 100,
     alignItems: "center",
     gap: 15,
+  },
+  text: {
+    color: colors.darkGray,
+    fontSize: 14,
+    padding: 5,
   },
 });

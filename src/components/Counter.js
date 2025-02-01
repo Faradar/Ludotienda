@@ -34,7 +34,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   textButton: {
-    color: colors.lightGray,
+    color: colors.darkGray,
+    fontSize: 20,
+  },
+  text: {
+    color: colors.darkGray,
     fontSize: 20,
   },
 });

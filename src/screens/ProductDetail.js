@@ -80,17 +80,20 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     paddingVertical: 20,
+    color: colors.darkGray,
   },
   description: {
     fontSize: 14,
     padding: 20,
     textAlign: "center",
+    color: colors.darkGray,
   },
   price: {
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "right",
     padding: 20,
+    color: colors.darkGray,
   },
   button: {
     backgroundColor: colors.accent,
@@ -100,7 +103,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonText: {
-    color: colors.lightGray,
+    color: colors.darkGray,
     fontSize: 20,
   },
 });
