@@ -10,11 +10,11 @@ const CardProduct = ({ item }) => {
       style={styles.container}
       onPress={() => navigation.navigate("ProductDetail", { product: item })}
     >
-      {/* <Image
+      <Image
         source={{ uri: item.thumbnail }}
         style={styles.image}
         resizeMode="cover"
-      /> */}
+      />
       <View>
         <Text style={styles.title}>{item.title}</Text>
         <View style={styles.containerText}>

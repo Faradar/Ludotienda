@@ -13,7 +13,7 @@ const CardItemCategory = ({ item: category }) => {
   return (
     <Pressable
       onPress={() => {
-        navigation.navigate("ProductsByCategory", { category });
+        navigation.navigate("ProductsByCategory", { category: category.name });
       }}
       style={styles.container}
     >
