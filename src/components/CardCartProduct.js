@@ -9,6 +9,11 @@ const CardCartProduct = ({ product }) => {
   const localId = useSelector((state) => state.user.localId);
   const [triggerDeleteItemCart] = useDeleteCartProductMutation();
 
+  const formattedPrice = new Intl.NumberFormat("es-AR", {
+    style: "currency",
+    currency: "ARS",
+  }).format(price);
+
   const deleteItemCart = () => {
     triggerDeleteItemCart({ localId, productId: product.id });
   };
@@ -18,7 +23,7 @@ const CardCartProduct = ({ product }) => {
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>{description}</Text>
         <View style={styles.containerText}>
-          <Text style={styles.text}>Price: ${price} ARG</Text>
+          <Text style={styles.text}>{formattedPrice} ARG</Text>
           <Text style={styles.text}>Quantity: {quantity}</Text>
         </View>
       </View>

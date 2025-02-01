@@ -22,6 +22,11 @@ const ProductDetail = ({
   const cartQuantity = productCart ? productCart.quantity : 0;
   const totalQuantity = product.stock - cartQuantity;
 
+  const formattedPrice = new Intl.NumberFormat("es-AR", {
+    style: "currency",
+    currency: "ARS",
+  }).format(product.price);
+
   const increment = () => {
     if (quantity < totalQuantity) setQuantity(quantity + 1);
   };
@@ -32,6 +37,7 @@ const ProductDetail = ({
 
   const handleAddProduct = async () => {
     if (quantity > totalQuantity) return;
+
     const cartProduct = {
       ...product,
       quantity: quantity + cartQuantity,
@@ -46,12 +52,13 @@ const ProductDetail = ({
       <Image source={{ uri: product.thumbnail }} style={styles.image} />
       <Text style={styles.title}>{product.title}</Text>
       <Text style={styles.description}>{product.description}</Text>
-      <Text style={styles.price}>Price: {product.price} $ ARG</Text>
+      <Text style={styles.price}>{formattedPrice} ARG</Text>
       {quantity > totalQuantity ? (
         <Text style={styles.price}>Out of Stock!</Text>
       ) : (
         <Counter
           quantity={quantity}
+          totalQuantity={totalQuantity}
           increment={increment}
           decrement={decrement}
         />

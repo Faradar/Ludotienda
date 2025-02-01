@@ -1,13 +1,15 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
 import colors from "../global/colors";
 
-const Counter = ({ quantity, increment, decrement }) => {
+const Counter = ({ quantity, totalQuantity, increment, decrement }) => {
   return (
     <View style={styles.container}>
       <Pressable style={styles.button} onPress={decrement}>
         <Text style={styles.textButton}>-</Text>
       </Pressable>
-      <Text style={styles.text}>{quantity}</Text>
+      <Text style={styles.text}>
+        {quantity}/{totalQuantity}
+      </Text>
       <Pressable style={styles.button} onPress={increment}>
         <Text style={styles.textButton}>+</Text>
       </Pressable>

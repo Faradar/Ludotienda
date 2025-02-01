@@ -14,8 +14,13 @@ const Cart = () => {
   const localId = useSelector((state) => state.user.localId);
   const [triggerPost] = usePostOrdersMutation();
   const [triggerDeleteCart] = useDeleteCartMutation();
-  const { data: cart, isLoading } = useGetCartQuery({ localId });
+  const { data: cart, isLoading, error } = useGetCartQuery({ localId });
   const [total, setTotal] = useState(0);
+
+  const formattedPrice = new Intl.NumberFormat("es-AR", {
+    style: "currency",
+    currency: "ARS",
+  }).format(total);
 
   useEffect(() => {
     if (cart) {
@@ -45,7 +50,7 @@ const Cart = () => {
         renderItem={({ item }) => <CardCartProduct product={item} />}
       />
       <View style={styles.containerTotal}>
-        <Text style={styles.text}>Total: ${total} ARG</Text>
+        <Text style={styles.text}>{formattedPrice} ARG</Text>
         <Pressable style={styles.button} onPress={confirmCart}>
           <Text style={styles.buttonText}>Checkout</Text>
         </Pressable>

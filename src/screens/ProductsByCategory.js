@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList, useWindowDimensions } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 import { useEffect, useState } from "react";
 import Search from "../components/Search";
 import CardProduct from "../components/CardProduct";
@@ -23,19 +23,8 @@ const ProductsByCategory = ({ route }) => {
   );
 
   useEffect(() => {
-    setFilteredProducts(productsFilteredByCategory); // Reset filtered list on data fetch
+    setFilteredProducts(productsFilteredByCategory);
   }, [productsData]);
-
-  const [portrait, setPortrait] = useState(true);
-  const { width, height } = useWindowDimensions();
-
-  useEffect(() => {
-    if (width > height) {
-      setPortrait(false);
-    } else {
-      setPortrait(true);
-    }
-  }, [width, height]);
 
   if (isError) {
     return <EmptyListComponent message={`Error: ${error.message}`} />;
@@ -46,7 +35,7 @@ const ProductsByCategory = ({ route }) => {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <Search
         products={productsFilteredByCategory}
         onFilter={setFilteredProducts}
@@ -58,7 +47,8 @@ const ProductsByCategory = ({ route }) => {
           data={filteredProducts}
           keyExtractor={(item) => item.id}
           renderItem={({ item }) => <CardProduct item={item} />}
-          contentContainerStyle={portrait ? null : styles.containerLandscape}
+          contentContainerStyle={styles.containerCard}
+          numColumns={2}
         />
       )}
     </View>
@@ -68,9 +58,10 @@ const ProductsByCategory = ({ route }) => {
 export default ProductsByCategory;
 
 const styles = StyleSheet.create({
-  containerLandscape: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
+  container: {
+    flex: 1,
+  },
+  containerCard: {
+    paddingBottom: 60,
   },
 });

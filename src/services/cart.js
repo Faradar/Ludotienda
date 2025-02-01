@@ -10,11 +10,12 @@ export const cartApi = createApi({
       query: ({ localId }) => `carts/${localId}.json`,
       transformResponse: (response) => {
         if (!response) return null;
-        const data = Object.entries(response).map((item) => ({
-          ...item[1],
-          id: item[0],
-        }));
-        return data;
+        return Object.entries(response)
+          .map(([key, item]) => ({
+            ...item,
+            id: key,
+          }))
+          .filter((item) => item.id && item.title && item.price);
       },
       providesTags: ["addProduct", "deleteProduct"],
     }),

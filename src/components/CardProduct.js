@@ -1,26 +1,44 @@
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Pressable,
+  Dimensions,
+} from "react-native";
 import colors from "../global/colors";
 import { useNavigation } from "@react-navigation/native";
+import LoadingSpinner from "./LoadingSpinner";
+import { useState } from "react";
+
+const { width: viewWidth } = Dimensions.get("window");
 
 const CardProduct = ({ item }) => {
   const navigation = useNavigation();
+  const [loading, setLoading] = useState(true);
+
+  const formattedPrice = new Intl.NumberFormat("es-AR", {
+    style: "currency",
+    currency: "ARS",
+  }).format(item.price);
 
   return (
     <Pressable
       style={styles.container}
       onPress={() => navigation.navigate("ProductDetail", { product: item })}
     >
+      {loading && <LoadingSpinner />}
       <Image
         source={{ uri: item.thumbnail }}
         style={styles.image}
-        resizeMode="cover"
+        resizeMode="contain"
+        onLoadStart={() => setLoading(true)}
+        onLoad={() => setLoading(false)}
       />
-      <View>
+      <View style={styles.containerText}>
         <Text style={styles.title}>{item.title}</Text>
-        <View style={styles.containerText}>
-          <Text style={styles.text}>Precio: ${item.price}</Text>
-          <Text style={styles.text}>Stock: {item.stock}</Text>
-        </View>
+        <Text style={styles.price}>{formattedPrice}</Text>
+        <Text style={styles.stock}>Stock: {item.stock}</Text>
       </View>
     </Pressable>
   );
@@ -30,34 +48,38 @@ export default CardProduct;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: colors.primary,
-    margin: 10,
+    marginHorizontal: "auto",
+    marginVertical: 50,
     borderRadius: 5,
     padding: 10,
-    flexDirection: "row",
     gap: 10,
+    flexDirection: "column",
     alignItems: "center",
+    width: viewWidth * 0.5,
+    height: viewWidth * 0.5,
   },
   image: {
-    width: "20vw",
-    height: "20vw",
-    backgroundColor: "red",
-  },
-  title: {
-    color: colors.lightGray,
-    fontSize: 14,
-    padding: 5,
-  },
-  description: {
-    fontSize: 15,
+    width: viewWidth * 0.45,
+    height: viewWidth * 0.45,
+    resizeMode: "cover",
   },
   containerText: {
-    flexDirection: "row",
-    gap: 20,
-    padding: 10,
+    gap: 5,
   },
-  text: {
-    fontSize: 12,
-    color: colors.lightGray,
+  title: {
+    color: colors.darkGray,
+    textAlign: "center",
+    fontSize: 14,
+  },
+  price: {
+    color: colors.darkGray,
+    textAlign: "center",
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+  stock: {
+    textAlign: "center",
+    fontSize: 14,
+    color: colors.darkGray,
   },
 });
