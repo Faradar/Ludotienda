@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import Counter from "../components/Counter";
 import { useState } from "react";
+import { formatCurrency } from "../utils/formatCurrency";
 
 const ProductDetail = ({
   route: {
@@ -21,11 +22,6 @@ const ProductDetail = ({
   });
   const cartQuantity = productCart ? productCart.quantity : 0;
   const totalQuantity = product.stock - cartQuantity;
-
-  const formattedPrice = new Intl.NumberFormat("es-AR", {
-    style: "currency",
-    currency: "ARS",
-  }).format(product.price);
 
   const increment = () => {
     if (quantity < totalQuantity) setQuantity(quantity + 1);
@@ -52,7 +48,7 @@ const ProductDetail = ({
       <Image source={{ uri: product.thumbnail }} style={styles.image} />
       <Text style={styles.title}>{product.title}</Text>
       <Text style={styles.description}>{product.description}</Text>
-      <Text style={styles.price}>{formattedPrice} ARG</Text>
+      <Text style={styles.price}>{formatCurrency(product.price)} ARG</Text>
       {quantity > totalQuantity ? (
         <Text style={styles.price}>Out of Stock!</Text>
       ) : (

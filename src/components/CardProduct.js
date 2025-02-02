@@ -10,17 +10,13 @@ import colors from "../global/colors";
 import { useNavigation } from "@react-navigation/native";
 import LoadingSpinner from "./LoadingSpinner";
 import { useState } from "react";
+import { formatCurrency } from "../utils/formatCurrency";
 
 const { width: viewWidth } = Dimensions.get("window");
 
 const CardProduct = ({ item }) => {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(true);
-
-  const formattedPrice = new Intl.NumberFormat("es-AR", {
-    style: "currency",
-    currency: "ARS",
-  }).format(item.price);
 
   return (
     <Pressable
@@ -37,7 +33,7 @@ const CardProduct = ({ item }) => {
       />
       <View style={styles.containerText}>
         <Text style={styles.title}>{item.title}</Text>
-        <Text style={styles.price}>{formattedPrice}</Text>
+        <Text style={styles.price}>{formatCurrency(item.price)}</Text>
         <Text style={styles.stock}>Stock: {item.stock}</Text>
       </View>
     </Pressable>

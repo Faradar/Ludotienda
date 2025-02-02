@@ -1,13 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import colors from "../global/colors";
+import { formatCurrency } from "../utils/formatCurrency";
 
 const CardOrder = ({ order }) => {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
         <Text style={styles.text}>{order.createdAt}</Text>
-        <Text style={styles.text}>Total: ${order.total} ARG</Text>
+        <Text style={styles.text}>
+          Total: {formatCurrency(order.total)} ARG
+        </Text>
       </View>
       <AntDesign name="search1" size={30} color={colors.darkGray} />
     </View>

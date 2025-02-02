@@ -3,16 +3,12 @@ import Entypo from "@expo/vector-icons/Entypo";
 import colors from "../global/colors";
 import { useDeleteCartProductMutation } from "../services/cart";
 import { useSelector } from "react-redux";
+import { formatCurrency } from "../utils/formatCurrency";
 
 const CardCartProduct = ({ product }) => {
   const { title, price, description, quantity } = product;
   const localId = useSelector((state) => state.user.localId);
   const [triggerDeleteItemCart] = useDeleteCartProductMutation();
-
-  const formattedPrice = new Intl.NumberFormat("es-AR", {
-    style: "currency",
-    currency: "ARS",
-  }).format(price);
 
   const deleteItemCart = () => {
     triggerDeleteItemCart({ localId, productId: product.id });
@@ -23,7 +19,7 @@ const CardCartProduct = ({ product }) => {
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>{description}</Text>
         <View style={styles.containerText}>
-          <Text style={styles.text}>{formattedPrice} ARG</Text>
+          <Text style={styles.text}>{formatCurrency(price)} ARG</Text>
           <Text style={styles.text}>Cantidad: {quantity}</Text>
         </View>
       </View>

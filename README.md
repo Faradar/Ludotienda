@@ -1,8 +1,9 @@
 # Ludotienda
 
 > Ludotienda is a React Native e-commerce app for selling tabletop games.  
-> 📌 **Note:** The app is in Spanish, but this README is in English for broader accessibility.  
-> Live demo [_TBD_]().
+> 📌 **Note:** The app is in Spanish, but this README is in English for broader accessibility.
+
+<!-- > Live demo [_TBD_](). -->
 
 ## Table of Contents
 

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import EmptyListComponent from "../components/EmptyListComponent";
 import LoadingSpinner from "../components/LoadingSpinner";
 import { useNavigation } from "@react-navigation/native";
+import { formatCurrency } from "../utils/formatCurrency";
 
 const Cart = () => {
   const navigation = useNavigation();
@@ -16,11 +17,6 @@ const Cart = () => {
   const [triggerDeleteCart] = useDeleteCartMutation();
   const { data: cart, isLoading, error } = useGetCartQuery({ localId });
   const [total, setTotal] = useState(0);
-
-  const formattedPrice = new Intl.NumberFormat("es-AR", {
-    style: "currency",
-    currency: "ARS",
-  }).format(total);
 
   useEffect(() => {
     if (cart) {
@@ -48,9 +44,10 @@ const Cart = () => {
         data={cart}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => <CardCartProduct product={item} />}
+        contentContainerStyle={{ paddingBottom: 100 }}
       />
       <View style={styles.containerTotal}>
-        <Text style={styles.text}>{formattedPrice} ARG</Text>
+        <Text style={styles.text}>{formatCurrency(total)} ARG</Text>
         <Pressable style={styles.button} onPress={confirmCart}>
           <Text style={styles.buttonText}>Finalizar compra</Text>
         </Pressable>
