@@ -25,7 +25,7 @@ const Search = ({ products, onFilter }) => {
         style={styles.input}
         value={textInput}
         onChangeText={setTextInput}
-        placeholder="Search"
+        placeholder="Buscar"
         placeholderTextColor={colors.darkGray}
       />
       <Pressable

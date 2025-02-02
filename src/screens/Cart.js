@@ -40,7 +40,7 @@ const Cart = () => {
   };
 
   if (isLoading) return <LoadingSpinner />;
-  if (!cart) return <EmptyListComponent message="Your cart is empty" />;
+  if (!cart) return <EmptyListComponent message="Tu carrito está vacío" />;
 
   return (
     <View style={styles.container}>
@@ -52,7 +52,7 @@ const Cart = () => {
       <View style={styles.containerTotal}>
         <Text style={styles.text}>{formattedPrice} ARG</Text>
         <Pressable style={styles.button} onPress={confirmCart}>
-          <Text style={styles.buttonText}>Checkout</Text>
+          <Text style={styles.buttonText}>Finalizar compra</Text>
         </Pressable>
       </View>
     </View>

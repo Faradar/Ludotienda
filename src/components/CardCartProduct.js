@@ -24,7 +24,7 @@ const CardCartProduct = ({ product }) => {
         <Text style={styles.description}>{description}</Text>
         <View style={styles.containerText}>
           <Text style={styles.text}>{formattedPrice} ARG</Text>
-          <Text style={styles.text}>Quantity: {quantity}</Text>
+          <Text style={styles.text}>Cantidad: {quantity}</Text>
         </View>
       </View>
       <Pressable onPress={deleteItemCart}>

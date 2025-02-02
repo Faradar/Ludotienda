@@ -65,7 +65,7 @@ const ProductDetail = ({
           />
 
           <Pressable style={styles.button} onPress={handleAddProduct}>
-            <Text style={styles.buttonText}>Add to cart</Text>
+            <Text style={styles.buttonText}>Agregar al carrito</Text>
           </Pressable>
         </>
       )}

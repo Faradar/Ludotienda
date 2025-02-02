@@ -65,32 +65,32 @@ const Signup = () => {
   return (
     <View style={styles.main}>
       <View style={styles.container}>
-        <Text style={styles.title}>Sign Up</Text>
+        <Text style={styles.title}>Creá tu cuenta</Text>
         <InputForm
-          label="Email"
+          label="E-mail"
           value={email}
           onChangeText={(t) => setEmail(t)}
           isSecure={false}
           error={emailError}
         />
         <InputForm
-          label="Password"
+          label="Contraseña"
           value={password}
           onChangeText={(t) => setPassword(t)}
           isSecure={true}
           error={passwordError}
         />
         <InputForm
-          label="Confirm Password"
+          label="Confirmar contraseña"
           value={confirmPassword}
           onChangeText={(t) => setConfirmPassword(t)}
           isSecure={true}
           error={confirmPasswordError}
         />
-        <SubmitButton onPress={onSubmit} title="Send" />
-        <Text style={styles.sub}>Already have an account?</Text>
+        <SubmitButton onPress={onSubmit} title="Registrarse" />
+        <Text style={styles.sub}>¿Ya tenés una cuenta?</Text>
         <Pressable onPress={() => navigation.navigate("Login")}>
-          <Text style={styles.subLink}>Login</Text>
+          <Text style={styles.subLink}>Inicia Sesión</Text>
         </Pressable>
       </View>
     </View>
@@ -128,5 +128,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "Josefin",
     color: colors.lightGray,
+    textDecorationLine: "underline",
+    fontWeight: "bold",
   },
 });

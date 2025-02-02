@@ -11,7 +11,7 @@ const Orders = () => {
 
   if (isLoading) return <LoadingSpinner />;
   if (!orders)
-    return <EmptyListComponent message="You don't have any orders" />;
+    return <EmptyListComponent message="No tenés ninguna orden todavia" />;
   return (
     <View>
       <FlatList

@@ -27,11 +27,11 @@ const MyProfile = () => {
         />
       </View>
       <SubmitButton
-        title="Add profile image"
+        title="Agregar foto de perfil"
         onPress={() => navigation.navigate("ImageSelector")}
       />
       <SubmitButton
-        title="Add location"
+        title="Agregar ubicación"
         onPress={() => navigation.navigate("LocationSelector")}
       />
       <View style={styles.containerText}>

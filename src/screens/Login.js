@@ -26,7 +26,9 @@ const Login = () => {
 
       if (response.error && response.error.data && response.error.data.error) {
         if (response.error.data.error.message === "INVALID_LOGIN_CREDENTIALS") {
-          setEmailError("Invalid email or password. Please try again.");
+          setEmailError(
+            "El email o la contraseña son incorrectos. Por favor, intente nuevamente."
+          );
           return;
         }
       }
@@ -56,25 +58,25 @@ const Login = () => {
   return (
     <View style={styles.main}>
       <View style={styles.container}>
-        <Text style={styles.title}>Login to start</Text>
+        <Text style={styles.title}>Ingresá</Text>
         <InputForm
-          label="Email"
+          label="E-mail"
           value={email}
           onChangeText={(t) => setEmail(t)}
           isSecure={false}
           error={emailError}
         />
         <InputForm
-          label="Password"
+          label="Contraseña"
           value={password}
           onChangeText={(t) => setPassword(t)}
           isSecure={true}
           error={passwordError}
         />
-        <SubmitButton onPress={onSubmit} title="Send" />
-        <Text style={styles.sub}>Not have an account?</Text>
+        <SubmitButton onPress={onSubmit} title="Iniciar Sesión" />
+        <Text style={styles.sub}>¿No tienes una cuenta?</Text>
         <Pressable onPress={() => navigation.navigate("Signup")}>
-          <Text style={styles.subLink}>Sign up</Text>
+          <Text style={styles.subLink}>Regístrate</Text>
         </Pressable>
       </View>
     </View>
@@ -112,5 +114,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontFamily: "Josefin",
     color: colors.lightGray,
+    textDecorationLine: "underline",
+    fontWeight: "bold",
   },
 });

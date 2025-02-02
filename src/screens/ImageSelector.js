@@ -49,14 +49,14 @@ const ImageSelector = () => {
         />
       </View>
       <SubmitButton
-        title="Take picture with camera"
+        title="Tomar la foto con la cámara"
         onPress={() => pickImage("camera")}
       />
       <SubmitButton
-        title="Choose picture from gallery"
+        title="Seleccionar foto de la galería"
         onPress={() => pickImage("")}
       />
-      <SubmitButton title="Confirm" onPress={confirmImage} />
+      <SubmitButton title="Confirmar" onPress={confirmImage} />
     </View>
   );
 };

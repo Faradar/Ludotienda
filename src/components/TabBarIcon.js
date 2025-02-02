@@ -16,7 +16,7 @@ export default TabBarIcon;
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    width: 40,
+    width: 50,
   },
   text: {
     fontSize: 12,

@@ -17,7 +17,8 @@ const ShopStack = () => {
             <Header
               title={
                 route.name === "ProductsByCategory"
-                  ? route.params.category
+                  ? route.params.category.charAt(0).toUpperCase() +
+                    route.params.category.slice(1)
                   : route.name === "ProductDetail"
                   ? route.params.product.brand
                   : route.name
@@ -27,7 +28,7 @@ const ShopStack = () => {
         },
       })}
     >
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Categorias" component={Home} />
       <Stack.Screen name="ProductsByCategory" component={ProductsByCategory} />
       <Stack.Screen name="ProductDetail" component={ProductDetail} />
     </Stack.Navigator>
