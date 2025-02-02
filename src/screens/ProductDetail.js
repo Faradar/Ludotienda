@@ -74,9 +74,10 @@ const ProductDetail = ({
 export default ProductDetail;
 
 const styles = StyleSheet.create({
-  container: {
-    gap: 20,
-  },
+  // container: {
+  //   flex: 1,
+  //   paddingBottom: 60,
+  // },
   image: {
     width: "100%",
     height: 200,
@@ -86,12 +87,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
-    paddingVertical: 20,
+    paddingVertical: 10,
     color: colors.darkGray,
   },
   description: {
     fontSize: 14,
-    padding: 20,
+    padding: 10,
     textAlign: "center",
     color: colors.darkGray,
   },
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     textAlign: "right",
-    padding: 20,
+    padding: 10,
     color: colors.darkGray,
   },
   button: {
