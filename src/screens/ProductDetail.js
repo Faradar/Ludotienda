@@ -56,17 +56,19 @@ const ProductDetail = ({
       {quantity > totalQuantity ? (
         <Text style={styles.price}>Out of Stock!</Text>
       ) : (
-        <Counter
-          quantity={quantity}
-          totalQuantity={totalQuantity}
-          increment={increment}
-          decrement={decrement}
-        />
-      )}
+        <>
+          <Counter
+            quantity={quantity}
+            totalQuantity={totalQuantity}
+            increment={increment}
+            decrement={decrement}
+          />
 
-      <Pressable style={styles.button} onPress={handleAddProduct}>
-        <Text style={styles.buttonText}>Add to cart</Text>
-      </Pressable>
+          <Pressable style={styles.button} onPress={handleAddProduct}>
+            <Text style={styles.buttonText}>Add to cart</Text>
+          </Pressable>
+        </>
+      )}
     </View>
   );
 };
@@ -74,10 +76,6 @@ const ProductDetail = ({
 export default ProductDetail;
 
 const styles = StyleSheet.create({
-  // container: {
-  //   flex: 1,
-  //   paddingBottom: 60,
-  // },
   image: {
     width: "100%",
     height: 200,
