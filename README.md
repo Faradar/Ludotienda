@@ -52,6 +52,7 @@ Ludotienda is built with:
 - Input validation on signup and login
 - Session persistence using SQLite (users remain logged in for a period)
 - Prevents adding more items than available stock
+- Loading spinner for images and pages to enhance user experience
 - Profile page where users can upload a profile picture (via camera or gallery)
 - Add and confirm location using Google Maps, storing the address
 - Profile and location data are stored in Firebase
@@ -59,9 +60,16 @@ Ludotienda is built with:
 
 ## Screenshots
 
-_TBD_
-
-<!-- ![Example screenshot](./img/screenshot.png) -->
+<img src="https://i.imgur.com/EDcfTDK.jpg" alt="Login" width="300">
+<img src="https://i.imgur.com/UJjE42P.jpg" alt="Signup" width="300">
+<img src="https://i.imgur.com/EAk3E4C.jpg" alt="Home" width="300">
+<img src="https://i.imgur.com/GntCaPM.jpg" alt="Home2" width="300">
+<img src="https://i.imgur.com/5EPONw9.jpg" alt="Products" width="300">
+<img src="https://i.imgur.com/xdW8Ps9.jpg" alt="Product" width="300">
+<img src="https://i.imgur.com/NA0Rrot.jpg" alt="Cart" width="300">
+<img src="https://i.imgur.com/Hi6QrOp.jpg" alt="Orders" width="300">
+<img src="https://i.imgur.com/ogxbATz.jpg" alt="Profile" width="300">
+<img src="https://i.imgur.com/K7ltiG0.jpg" alt="Picture" width="300">
 
 ## Setup
 
