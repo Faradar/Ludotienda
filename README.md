@@ -61,16 +61,16 @@ Ludotienda is built with:
 
 ## Screenshots
 
-<img src="https://i.imgur.com/EDcfTDK.jpg" alt="Login" width="200">
-<img src="https://i.imgur.com/UJjE42P.jpg" alt="Signup" width="200">
-<img src="https://i.imgur.com/EAk3E4C.jpg" alt="Home" width="200">
-<img src="https://i.imgur.com/GntCaPM.jpg" alt="Home2" width="200">
-<img src="https://i.imgur.com/5EPONw9.jpg" alt="Products" width="200">
-<img src="https://i.imgur.com/xdW8Ps9.jpg" alt="Product" width="200">
-<img src="https://i.imgur.com/NA0Rrot.jpg" alt="Cart" width="200">
-<img src="https://i.imgur.com/Hi6QrOp.jpg" alt="Orders" width="200">
-<img src="https://i.imgur.com/ogxbATz.jpg" alt="Profile" width="200">
-<img src="https://i.imgur.com/K7ltiG0.jpg" alt="Picture" width="200">
+<img src="https://i.imgur.com/EDcfTDK.jpg" alt="Login" width="300">
+<img src="https://i.imgur.com/UJjE42P.jpg" alt="Signup" width="300">
+<img src="https://i.imgur.com/EAk3E4C.jpg" alt="Home" width="300">
+<img src="https://i.imgur.com/GntCaPM.jpg" alt="Home2" width="300">
+<img src="https://i.imgur.com/5EPONw9.jpg" alt="Products" width="300">
+<img src="https://i.imgur.com/xdW8Ps9.jpg" alt="Product" width="300">
+<img src="https://i.imgur.com/NA0Rrot.jpg" alt="Cart" width="300">
+<img src="https://i.imgur.com/Hi6QrOp.jpg" alt="Orders" width="300">
+<img src="https://i.imgur.com/ogxbATz.jpg" alt="Profile" width="300">
+<img src="https://i.imgur.com/K7ltiG0.jpg" alt="Picture" width="300">
 
 ## Setup
 
