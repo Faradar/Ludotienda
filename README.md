@@ -1,7 +1,8 @@
-# Project Name
+# Ludotienda
 
-> Outline a brief description of your project.
-> Live demo [_here_](https://www.example.com). <!-- If you have the project hosted somewhere, include the link here. -->
+> Ludotienda is a React Native e-commerce app for selling tabletop games.  
+> 📌 **Note:** The app is in Spanish, but this README is in English for broader accessibility.  
+> Live demo [_TBD_]().
 
 ## Table of Contents
 
@@ -15,93 +16,134 @@
 - [Room for Improvement](#room-for-improvement)
 - [Acknowledgements](#acknowledgements)
 - [Contact](#contact)
-<!-- * [License](#license) -->
 
 ## General Info
 
-This project is simple Lorem ipsum dolor generator.
+Ludotienda is a mobile e-commerce application that allows users to browse and purchase tabletop games easily.
 
-- Provide general information about your project here.
-- What problem does it (intend to) solve?
-- What is the purpose of your project?
-- Why did you undertake it?
-<!-- You don't have to answer all the questions - just the ones relevant to your project. -->
+- **Problem it solves:** Provides an easy way to display and sell tabletop games online.
+- **Purpose:** To serve as an e-commerce solution for board game enthusiasts.
+- **Inspiration:** This project was created as part of a React Native course at Coderhouse.
 
 ## Technologies
 
-Project is created with:
+Ludotienda is built with:
 
-- Tech 1 - version 1.0
-- Tech 2 - version 2.0
-- Tech 3 - version 3.0
+- **React Native** (0.76.6)
+- **Expo** (~52.0.26)
+- **Firebase** (for authentication & database)
+- **Redux Toolkit** (^2.5.0)
+- **SQLite** (for session persistence)
+- **Yup** (^1.6.1) (for form validation)
+- **react-native-dotenv** (for environment variables)
+- **React Navigation** (for app navigation)
+- **Expo Image Picker** (~16.0.4) (for selecting/capturing profile pictures)
+- **Expo Location** (^18.0.5) (for retrieving user location)
+- **Google Maps API** (for displaying and confirming location)
 
 ## Features
 
-List the ready features here:
-
-- Awesome feature 1
-- Awesome feature 2
-- Awesome feature 3
+- User authentication (signup, login, logout)
+- Browse categories and products
+- View product details
+- Add products to cart
+- Checkout and order creation
+- Input validation on signup and login
+- Session persistence using SQLite (users remain logged in for a period)
+- Prevents adding more items than available stock
+- Profile page where users can upload a profile picture (via camera or gallery)
+- Add and confirm location using Google Maps, storing the address
+- Profile and location data are stored in Firebase
+- Permissions are requested before using the camera or accessing location
 
 ## Screenshots
 
-![Example screenshot](./img/screenshot.png)
+_TBD_
 
-<!-- If you have screenshots you'd like to share, include them here. -->
+<!-- ![Example screenshot](./img/screenshot.png) -->
 
 ## Setup
 
-To run this project, install it locally using npm:
+To install and run this project locally:
 
+```sh
+npm install
+npm start
 ```
-$ cd ../lorem
-$ npm install
-$ npm start
+
+If you don't have a setup like Android Studio, you can still check the app on your phone:
+
+1. Download the Expo Go app on your phone (available on both iOS and Android).
+2. Scan the QR code that appears in your terminal after running npm start.
+
+📌 Note: Make sure both your computer and your phone are connected to the same Wi-Fi network.
+
+If the app doesn't connect, try canceling the process and running the following command instead:
+
+```sh
+npx expo start --tunnel
 ```
 
-What are the project requirements/dependencies? Where are they listed? A requirements.txt or a Pipfile.lock file perhaps? Where is it located?
+This uses a tunneling option that can help in cases where the phone and computer are having trouble connecting over the local network.
 
-Proceed to describe how to install / setup one's local environment / get started with the project.
+⚠️ Web Compatibility Notice
+
+This app uses SQLite for session persistence, along with other native features like image picking and location services, which do not work in a web environment. Running the app with expo start --web will result in limited or broken functionality.
+
+## Environment Variables
+
+Ludotienda uses `react-native-dotenv` to manage environment variables. Make sure to create a `.env` file at the root of the project and define the following variables:
+
+```js
+BASE_URL = your_api_base_url;
+AUTH_BASE_URL = your_auth_base_url;
+API_KEY = your_firebase_api_key;
+GOOGLE_API_KEY = your_google_maps_api_key;
+```
+
+These variables are used in `src/config/database.js`:
+
+```js
+import { BASE_URL, AUTH_BASE_URL, API_KEY, GOOGLE_API_KEY } from "@env";
+
+export const base_url = BASE_URL;
+export const auth_base_url = AUTH_BASE_URL;
+export const api_key = API_KEY;
+export const google_api_key = GOOGLE_API_KEY;
+```
 
 ## Usage
 
-How does one go about using it?
-Provide various use cases and code examples here.
-
-`write-your-code-here`
+1. Open the app and sign up.
+2. Browse through game categories and select a product.
+3. Add products to the cart.
+4. Proceed to checkout and place an order.
+5. If the app is closed and reopened, the session is maintained.
+6. Navigate to the profile page to set a profile picture (via camera or gallery).
+7. Add and confirm your location using Google Maps.
 
 ## Project Status
 
-Project is: _in progress_ / _complete_ / _no longer being worked on_. If you are no longer working on it, provide reasons why.
+🚧 **In progress** - Still being developed and improved.
 
 ## Room for Improvement
 
-Include areas you believe need improvement / could be improved. Also add TODOs for future development.
+### Known Issues & Improvements
 
-Room for improvement:
+- Replace `console.log` debugging with proper error handling.
+- Improve styling on the product detail page.
 
-- Improvement to be done 1
-- Improvement to be done 2
+### Future Enhancements
 
-To do:
-
-- Feature to be added 1
-- Feature to be added 2
+- Add a product image carousel.
+- Implement a better error-handling component.
+- Add an option to manually enter location instead of relying only on GPS.
 
 ## Acknowledgements
 
-Give credit here.
-
-- This project was inspired by...
-- This project was based on [this tutorial](https://www.example.com).
-- Many thanks to...
+- Created as part of the **Coderhouse React Native** course.
+- Product and category data sourced from [_Tienda Maldón_](https://tienda.maldon.com.ar/).
 
 ## Contact
 
-Created by [@flynerdpl](https://www.flynerd.pl/) - feel free to contact me!
-
-<!-- Optional -->
-<!-- ## License -->
-<!-- This project is open source and available under the [... License](). -->
-
-<!-- You don't have to include all sections - just the one's relevant to your project -->
+Created by [**Tomás Echeveste Arteaga**](https://github.com/faradar) – feel free to reach out at: **echeveste.t@gmail.com**
