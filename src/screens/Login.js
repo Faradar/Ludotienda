@@ -23,6 +23,14 @@ const Login = () => {
     try {
       loginSchema.validateSync({ email, password });
       const response = await triggerLogin({ email, password });
+
+      if (response.error && response.error.data && response.error.data.error) {
+        if (response.error.data.error.message === "INVALID_LOGIN_CREDENTIALS") {
+          setEmailError("Invalid email or password. Please try again.");
+          return;
+        }
+      }
+
       const user = {
         email: response.data.email,
         idToken: response.data.idToken,

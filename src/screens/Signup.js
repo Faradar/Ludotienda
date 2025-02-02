@@ -25,6 +25,14 @@ const Signup = () => {
     try {
       signupSchema.validateSync({ email, password, confirmPassword });
       const response = await triggerSignup({ email, password });
+
+      if (response.error && response.error.data && response.error.data.error) {
+        if (response.error.data.error.message === "EMAIL_EXISTS") {
+          setEmailError("Email already exists. Please use a different one.");
+          return;
+        }
+      }
+
       const user = {
         email: response.data.email,
         idToken: response.data.idToken,
