@@ -48,6 +48,7 @@ Ludotienda is built with:
 - User authentication (signup, login, logout)
 - Browse categories and products
 - View product details
+- Image carousel in the product detail page for browsing multiple product images
 - Add products to cart
 - Checkout and order creation
 - Input validation on signup and login
@@ -66,7 +67,7 @@ Ludotienda is built with:
 <img src="https://i.imgur.com/EAk3E4C.jpg" alt="Home" width="300">
 <img src="https://i.imgur.com/GntCaPM.jpg" alt="Home2" width="300">
 <img src="https://i.imgur.com/5EPONw9.jpg" alt="Products" width="300">
-<img src="https://i.imgur.com/xdW8Ps9.jpg" alt="Product" width="300">
+<img src="https://i.imgur.com/GZ5IjUw.jpg" alt="Product" width="300">
 <img src="https://i.imgur.com/NA0Rrot.jpg" alt="Cart" width="300">
 <img src="https://i.imgur.com/Hi6QrOp.jpg" alt="Orders" width="300">
 <img src="https://i.imgur.com/ogxbATz.jpg" alt="Profile" width="300">
@@ -141,11 +142,9 @@ export const google_api_key = GOOGLE_API_KEY;
 ### Known Issues & Improvements
 
 - Replace `console.log` debugging with proper error handling.
-- Improve styling on the product detail page.
 
 ### Future Enhancements
 
-- Add a product image carousel.
 - Implement a better error-handling component.
 - Add an option to manually enter location instead of relying only on GPS.
 

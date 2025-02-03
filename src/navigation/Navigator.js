@@ -21,7 +21,7 @@ const Navigator = () => {
           dispatch(setUser(sessionUser));
         }
       } catch (error) {
-        console.log(error);
+        console.log(error.message);
       }
     })();
   }, []);

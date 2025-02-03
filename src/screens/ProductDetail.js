@@ -1,4 +1,11 @@
-import { StyleSheet, Text, View, Image, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  Pressable,
+  ScrollView,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import colors from "../global/colors";
 import { useGetProductCartQuery, usePostCartMutation } from "../services/cart";
 import { useSelector } from "react-redux";
@@ -6,6 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import Counter from "../components/Counter";
 import { useState } from "react";
 import { formatCurrency } from "../utils/formatCurrency";
+import Carousel from "../components/Carousel"; // Import the new Carousel component
 
 const ProductDetail = ({
   route: {
@@ -44,34 +52,46 @@ const ProductDetail = ({
   };
 
   return (
-    <View style={styles.container}>
-      <Image source={{ uri: product.thumbnail }} style={styles.image} />
-      <Text style={styles.title}>{product.title}</Text>
-      <Text style={styles.description}>{product.description}</Text>
-      <Text style={styles.price}>{formatCurrency(product.price)} ARG</Text>
-      {quantity > totalQuantity ? (
-        <Text style={styles.price}>Out of Stock!</Text>
-      ) : (
-        <>
-          <Counter
-            quantity={quantity}
-            totalQuantity={totalQuantity}
-            increment={increment}
-            decrement={decrement}
-          />
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.container}
+    >
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <Carousel images={product.images} />
+        <Text style={styles.title}>{product.title}</Text>
+        <Text style={styles.description}>{product.description}</Text>
+        <Text style={styles.price}>{formatCurrency(product.price)} ARG</Text>
 
-          <Pressable style={styles.button} onPress={handleAddProduct}>
-            <Text style={styles.buttonText}>Agregar al carrito</Text>
-          </Pressable>
-        </>
-      )}
-    </View>
+        {quantity > totalQuantity ? (
+          <Text style={styles.price}>Out of Stock!</Text>
+        ) : (
+          <>
+            <Counter
+              quantity={quantity}
+              totalQuantity={totalQuantity}
+              increment={increment}
+              decrement={decrement}
+            />
+
+            <Pressable style={styles.button} onPress={handleAddProduct}>
+              <Text style={styles.buttonText}>Agregar al carrito</Text>
+            </Pressable>
+          </>
+        )}
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
 export default ProductDetail;
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  scrollContainer: {
+    paddingBottom: 80,
+  },
   image: {
     width: "100%",
     height: 200,
