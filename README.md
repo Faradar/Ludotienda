@@ -135,7 +135,7 @@ export const google_api_key = GOOGLE_API_KEY;
 
 ## Project Status
 
-🚧 **In progress** - Still being developed and improved.
+✅ **Finished** - No further development planned at the moment, but improvements could be made in the future.
 
 ## Room for Improvement
 
